@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>KoffeDrop — Signing you in</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding-top: 60px;">
+  <p id="msg">Signing you in…</p>
+  <script>
+    (function () {
+      var EXTENSION_ID = "lbkoehejgnkgjmaaanebgldonobgdjdb";
+      var hash = location.hash.startsWith('#') ? location.hash.substring(1) : location.hash;
+      var params = new URLSearchParams(hash);
+      var accessToken = params.get('access_token');
+      var refreshToken = params.get('refresh_token');
+      var msgEl = document.getElementById('msg');
+
+      if (!accessToken) {
+        if (msgEl) msgEl.textContent = 'Something went wrong — no token found. Close this tab and try again.';
+        return;
+      }
+
+      if (typeof chrome === 'undefined' || !chrome.runtime || !chrome.runtime.sendMessage) {
+        if (msgEl) msgEl.textContent = 'Please open this link in the browser where KoffeDrop is installed.';
+        return;
+      }
+
+      chrome.runtime.sendMessage(
+        EXTENSION_ID,
+        { type: 'MAGIC_LINK_CALLBACK', accessToken: accessToken, refreshToken: refreshToken },
+        function (response) {
+          if (response && response.ok) {
+            if (msgEl) msgEl.textContent = 'Signed in! You can close this tab and reopen KoffeDrop.';
+          } else {
+            if (msgEl) msgEl.textContent = 'Could not sign in. Close this tab and try again.';
+          }
+          setTimeout(function () { window.close(); }, 1500);
+        }
+      );
+    })();
+  </script>
+</body>
+</html>
