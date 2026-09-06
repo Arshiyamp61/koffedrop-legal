@@ -22,7 +22,7 @@
 <body>
 
 <h1>KoffeDrop Privacy Policy</h1>
-<p class="updated">Last updated: August 22, 2026 &nbsp;|&nbsp; Effective date: August 22, 2026</p>
+<p class="updated">Last updated: September 6, 2026 &nbsp;|&nbsp; Effective date: September 6, 2026</p>
 
 <p>KoffeDrop ("the extension", "the Service", "we", "us", "our") is a Chrome extension that captures
 your AI conversation context (from supported platforms such as Claude.ai and ChatGPT) and generates
@@ -101,8 +101,9 @@ receives the specific data necessary to perform its function, and none are permi
 data for their own independent purposes such as advertising.</p>
 <table>
 <tr><th>Provider</th><th>Role</th><th>Data received</th></tr>
-<tr><td>Groq</td><td>AI inference (generates your summary)</td><td>Captured conversation text, temporarily, for the duration of processing</td></tr>
-<tr><td>OpenRouter</td><td>AI inference (fallback provider if the primary is unavailable)</td><td>Captured conversation text, temporarily, for the duration of processing</td></tr>
+<tr><td>NVIDIA</td><td>AI inference (primary provider)</td><td>Captured conversation text, temporarily, for the duration of processing</td></tr>
+<tr><td>Groq</td><td>AI inference (fallback provider if the primary is unavailable)</td><td>Captured conversation text, temporarily, for the duration of processing</td></tr>
+<tr><td>OpenRouter</td><td>AI inference (fallback provider if earlier providers are unavailable)</td><td>Captured conversation text, temporarily, for the duration of processing</td></tr>
 <tr><td>Supabase</td><td>Authentication, database storage, and backend hosting</td><td>Email address, capsule content, capsule metadata, usage events</td></tr>
 </table>
 <p>We do <strong>not</strong> sell your personal information. We do <strong>not</strong> share your
